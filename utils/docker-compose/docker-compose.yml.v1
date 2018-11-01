@@ -1,0 +1,21 @@
+#version: "1"
+flexget:
+  image: anthonyguerreiro/flexget-docker-config:1
+  environment:
+    - trakt_user=${trakt_user}
+    - mal_user=${mal_user}
+    - pushbullet_token=${pushbullet_token}
+  volumes:
+    - ${download_folder}:/downloads
+  restart: unless-stopped
+  links:
+    - transmission:transmission
+transmission:
+  image: anthonyguerreiro/rpi-transmission
+  ports:
+    - 9091:9091
+    - 51413:51413
+    - 51413:51413/udp
+  volumes:
+    - ${download_folder}:/downloads
+  restart: unless-stopped
