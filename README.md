@@ -21,11 +21,11 @@ My Flexget configuration is heavily based on [Jonybat's](https://github.com/Jony
 The image can be built with any other configuration preloaded or a pre-populated flexget database by passing the build args to the *Dockerfile*, such as:
 
 ```
-docker build -t myimage --build-arg anime_yml_file=path/to/anime.yml \
-                        --build-arg secrets_yml_file=path/to/secrets.yml \
+docker build -t myimage --build-arg anime_yml=path/to/anime.yml \
+                        --build-arg secrets_yml=path/to/secrets.yml \
                         --build-arg entrypoint=path/to/entrypoint.sh \
                         --build-arg flexget_db=path/to/db-config.sqlite \
-                        --build-arg config_yml_file=path/to/config.yml .
+                        --build-arg config_yml=path/to/config.yml .
 ```
 
 The [entrypoint](utils/defaults/entrypoint.sh) uses the *ENV variables* provided in runtime to finish the configuration by replacing them in **secrets.yml**. It also builds up the folder structure used by my configuration and requests a [trakt](https://trakt.tv/) authentication token on startup.
