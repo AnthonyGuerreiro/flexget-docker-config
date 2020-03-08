@@ -5,6 +5,7 @@ FROM anthonyguerreiro/flexget-python3-armv7l:3.0.28
 
 ARG TRANSMISSIONRPC_VERSION=0.11
 ARG SUBLIMINAL_VERSION=2.0.5
+ARG FUTURE_VERSION=0.18.2
 
 ARG anime_yml=https://raw.githubusercontent.com/AnthonyGuerreiro/flexget-docker-config/master/utils/defaults/anime.yml
 ARG secrets_yml=https://raw.githubusercontent.com/AnthonyGuerreiro/flexget-docker-config/master/utils/defaults/secrets.yml
@@ -25,6 +26,7 @@ ADD https://raw.githubusercontent.com/AnthonyGuerreiro/flexget_config/ag/plugins
 
 RUN chmod +x /entrypoint && \
     pip install --no-cache-dir transmissionrpc==${TRANSMISSIONRPC_VERSION} \
+                               future==${FUTURE_VERSION} \
                                subliminal==${SUBLIMINAL_VERSION}
 
 ENTRYPOINT ["/entrypoint"]

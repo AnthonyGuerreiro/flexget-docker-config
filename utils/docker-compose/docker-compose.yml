@@ -1,10 +1,12 @@
 version: "3.7"
 
 services:
+
   flexget:
-    image: anthonyguerreiro/flexget-docker-config:1
+    image: anthonyguerreiro/flexget-docker-config:3.0.28
     depends_on:
       - transmission
+#    network_mode: "service:vpn"
     environment:
       - trakt_user=${trakt_user}
       - mal_user=${mal_user}
@@ -12,8 +14,10 @@ services:
     volumes:
       - ${download_folder}:/downloads
     restart: unless-stopped
+
   transmission:
-    image: linuxserver/transmission:148
+    image: linuxserver/transmission:arm32v7-2.94-r2-ls43
+#    network_mode: "service:vpn"
     ports:
       - 9091:9091
       - 51413:51413
@@ -23,3 +27,16 @@ services:
     restart: unless-stopped
     entrypoint: transmission-daemon
     command: -c /watch -w /downloads -f -t -a *.*.*.*,transmission -u transmission_user -v transmission_pw
+
+#networks:
+#  this_network:
+#    external:
+#      name: pia
+
+networks:
+  default:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.177.57.0/24
+
