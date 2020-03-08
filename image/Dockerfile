@@ -11,7 +11,7 @@ ARG anime_yml=https://raw.githubusercontent.com/AnthonyGuerreiro/flexget-docker-
 ARG secrets_yml=https://raw.githubusercontent.com/AnthonyGuerreiro/flexget-docker-config/master/utils/defaults/secrets.yml
 ARG entrypoint=https://raw.githubusercontent.com/AnthonyGuerreiro/flexget-docker-config/master/utils/defaults/entrypoint.sh
 ARG flexget_db=https://raw.githubusercontent.com/AnthonyGuerreiro/flexget-docker-config/master/utils/defaults/db-config.sqlite
-ARG config_yml=https://raw.githubusercontent.com/AnthonyGuerreiro/flexget_config/master/config.yml
+ARG config_yml=https://raw.githubusercontent.com/AnthonyGuerreiro/flexget_config/ag/config.yml
 
 WORKDIR /.flexget
 
